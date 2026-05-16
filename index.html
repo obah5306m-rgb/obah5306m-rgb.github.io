@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAH SOFTWARE - Logiciels de Gestion</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #0a0d14; color: #eaeaea; }
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #0a0d14 0%, #111520 100%);
+  border-bottom: 1px solid #1e2535;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo { font-size: 24px; font-weight: 700; color: #f1c40f; }
+.logo span { color: #27ae60; }
+nav a {
+  color: #6b7280;
+  text-decoration: none;
+  margin-left: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav a:hover { color: #eaeaea; }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #0a0d14, #111520, #0a0f0a);
+}
+.hero-badge {
+  background: #f1c40f22;
+  color: #f1c40f;
+  border: 1px solid #f1c40f44;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+.hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.hero h1 span { color: #27ae60; }
+.hero p {
+  color: #6b7280;
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: #27ae60;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #1e8449; }
+.btn-secondary {
+  background: #f1c40f22;
+  color: #f1c40f;
+  border: 1px solid #f1c40f44;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding: 40px;
+  background: #111520;
+  border-top: 1px solid #1e2535;
+  border-bottom: 1px solid #1e2535;
+  flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-num { font-size: 32px; font-weight: 700; color: #27ae60; }
+.stat-lbl { color: #6b7280; font-size: 13px; margin-top: 4px; }
+
+/* APPS */
+.section { padding: 60px 40px; max-width: 1100px; margin: 0 auto; }
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.section-sub {
+  text-align: center;
+  color: #6b7280;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.app-card {
+  background: #111520;
+  border: 1px solid #1e2535;
+  border-radius: 20px;
+  padding: 28px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.app-card:hover { transform: translateY(-4px); }
+.app-card.orange { border-top: 4px solid #f39c12; }
+.app-card.green { border-top: 4px solid #27ae60; }
+.app-card.blue { border-top: 4px solid #2980b9; }
+.app-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.app-icon.orange { background: #f39c1222; color: #f39c12; }
+.app-icon.green { background: #27ae6022; color: #27ae60; }
+.app-icon.blue { background: #2980b922; color: #2980b9; }
+.app-name { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.app-desc { color: #6b7280; font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+.app-features { list-style: none; margin-bottom: 20px; }
+.app-features li {
+  color: #9ca3af;
+  font-size: 13px;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.app-features li::before { content: "✅"; font-size: 12px; }
+.app-price {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.app-price span { color: #6b7280; font-size: 14px; font-weight: 400; }
+.btn-app {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+.btn-app.orange { background: #f39c12; color: #000; }
+.btn-app.green { background: #27ae60; color: #fff; }
+.btn-app.blue { background: #2980b9; color: #fff; }
+
+/* FEATURES */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.feature-card {
+  background: #111520;
+  border: 1px solid #1e2535;
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+.feature-icon { font-size: 32px; margin-bottom: 12px; }
+.feature-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+.feature-desc { color: #6b7280; font-size: 12px; line-height: 1.5; }
+
+/* CONTACT */
+.contact-section {
+  background: linear-gradient(135deg, #27ae6011, #2980b911);
+  border: 1px solid #27ae6033;
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+  margin: 0 40px 60px;
+}
+.contact-section h2 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.contact-section p { color: #6b7280; margin-bottom: 24px; }
+.contact-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-email {
+  background: #1e2535;
+  color: #eaeaea;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* FOOTER */
+footer {
+  background: #111520;
+  border-top: 1px solid #1e2535;
+  padding: 24px 40px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+}
+footer span { color: #27ae60; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 28px; }
+  header { padding: 16px 20px; }
+  .section { padding: 40px 20px; }
+  .contact-section { margin: 0 20px 40px; padding: 28px 20px; }
+  nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">BAH <span>SOFTWARE</span></div>
+  <nav>
+    <a href="#apps">Nos Applications</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🇲🇱 MADE IN MALI · BAMAKO</div>
+  <h1>Logiciels de Gestion<br><span>Professionnels</span></h1>
+  <p>Des applications simples, puissantes et adaptées aux entreprises maliennes. Gérez vos ventes, votre caisse et votre comptabilité facilement.</p>
+  <div class="hero-btns">
+    <a href="#apps" class="btn-primary">🚀 Voir nos applications</a>
+    <a href="#contact" class="btn-secondary">💬 Nous contacter</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-lbl">Applications disponibles</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-lbl">Fait au Mali</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">FCFA</div>
+    <div class="stat-lbl">Devise supportée</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">24/7</div>
+    <div class="stat-lbl">Support disponible</div>
+  </div>
+</div>
+
+<!-- APPS -->
+<div class="section" id="apps">
+  <div class="section-title">Nos Applications</div>
+  <div class="section-sub">Choisissez l'application adaptée à votre activité</div>
+  <div class="apps-grid">
+
+    <!-- BAH SHOP -->
+    <div class="app-card orange">
+      <div class="app-icon orange">S</div>
+      <div class="app-name">BAH SHOP</div>
+      <div class="app-desc">Application de gestion des ventes et factures pour les commerçants et boutiques.</div>
+      <ul class="app-features">
+        <li>Tableau de bord en temps réel</li>
+        <li>Gestion des ventes et factures</li>
+        <li>Gestion des produits et stock</li>
+        <li>Gestion des clients</li>
+        <li>Module dépenses</li>
+        <li>Graphiques et statistiques</li>
+        <li>Impression des factures</li>
+        <li>Protection par mot de passe</li>
+      </ul>
+      <div class="app-price" style="color:#f39c12">25 000 FCFA <span>/ licence</span></div>
+      <a href="https://wa.me/22393653227?text=Bonjour, je veux acheter BAH SHOP" class="btn-app orange" target="_blank">🛒 Commander BAH SHOP</a>
+    </div>
+
+    <!-- BAH GOLD -->
+    <div class="app-card green">
+      <div class="app-icon green">G</div>
+      <div class="app-name">BAH GOLD</div>
+      <div class="app-desc">Logiciel de comptabilité complet avec gestion de caisse, encaissements et décaissements.</div>
+      <ul class="app-features">
+        <li>Gestion de caisse complète</li>
+        <li>Encaissements et décaissements</li>
+        <li>Solde en temps réel</li>
+        <li>Ventes et factures</li>
+        <li>Dépenses par catégorie</li>
+        <li>Graphiques financiers</li>
+        <li>Sauvegarde automatique</li>
+        <li>Protection par mot de passe</li>
+      </ul>
+      <div class="app-price" style="color:#27ae60">35 000 FCFA <span>/ licence</span></div>
+      <a href="https://wa.me/22393653227?text=Bonjour, je veux acheter BAH GOLD" class="btn-app green" target="_blank">🏆 Commander BAH GOLD</a>
+    </div>
+
+    <!-- MAMAN DEN -->
+    <div class="app-card blue">
+      <div class="app-icon blue">M</div>
+      <div class="app-name">MAMAN DEN</div>
+      <div class="app-desc">Solution comptable adaptée aux petits commerces et activités familiales au Mali.</div>
+      <ul class="app-features">
+        <li>Interface simple et intuitive</li>
+        <li>Gestion de caisse</li>
+        <li>Encaissements et décaissements</li>
+        <li>Gestion des produits</li>
+        <li>Facturation simple</li>
+        <li>Graphiques clairs</li>
+        <li>Sauvegarde des données</li>
+        <li>Protection par mot de passe</li>
+      </ul>
+      <div class="app-price" style="color:#2980b9">20 000 FCFA <span>/ licence</span></div>
+      <a href="https://wa.me/22393653227?text=Bonjour, je veux acheter MAMAN DEN" class="btn-app blue" target="_blank">🏪 Commander MAMAN DEN</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div style="background:#111520;border-top:1px solid #1e2535;border-bottom:1px solid #1e2535;padding:60px 40px">
+  <div style="max-width:1100px;margin:0 auto" id="features">
+    <div class="section-title">Pourquoi nous choisir ?</div>
+    <div class="section-sub" style="margin-bottom:32px">Tout ce dont vous avez besoin pour gérer votre activité</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🇲🇱</div>
+        <div class="feature-title">Fait au Mali</div>
+        <div class="feature-desc">Conçu spécialement pour les entreprises maliennes avec FCFA et TVA 18%</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <div class="feature-title">Windows</div>
+        <div class="feature-desc">Fonctionne sur tous les PC Windows sans connexion internet</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <div class="feature-title">Sécurisé</div>
+        <div class="feature-desc">Protection par mot de passe pour sécuriser vos données</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <div class="feature-title">Sauvegarde</div>
+        <div class="feature-desc">Vos données sont sauvegardées automatiquement</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🖨️</div>
+        <div class="feature-title">Impression</div>
+        <div class="feature-desc">Imprimez vos factures professionnelles en un clic</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Graphiques</div>
+        <div class="feature-desc">Visualisez vos performances avec des graphiques clairs</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Rapide</div>
+        <div class="feature-desc">Application légère qui fonctionne même sur les vieux PC</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Simple</div>
+        <div class="feature-desc">Interface intuitive, facile à utiliser sans formation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div style="max-width:1100px;margin:60px auto 0" id="contact">
+  <div class="contact-section">
+    <h2>Intéressé ? Contactez-nous ! 📞</h2>
+    <p>Nous sommes disponibles sur WhatsApp pour vous aider à choisir la bonne application et répondre à vos questions.</p>
+    <div class="contact-btns">
+      <a href="https://wa.me/22393653227" class="btn-whatsapp" target="_blank">
+        📱 WhatsApp : +223 93 65 32 27
+      </a>
+      <a href="mailto:obah5306m@gmail.com" class="btn-email">
+        📧 obah5306m@gmail.com
+      </a>
+    </div>
+    <div style="margin-top:20px;color:#6b7280;font-size:13px">
+      📍 Banconi Farada, Bamako, Mali
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:8px">
+    <span style="font-size:18px;font-weight:700">BAH <span>SOFTWARE</span></span>
+  </div>
+  <div>© 2026 BAH SOFTWARE · Banconi Farada, Bamako, Mali</div>
+  <div style="margin-top:4px">Tous droits réservés · <span>Made with ❤️ in Mali</span></div>
+</footer>
+
+</body>
+</html>
